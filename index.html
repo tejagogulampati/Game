@@ -265,7 +265,7 @@ function createDrop(){
 let drop=document.createElement("div")
 
 if(Math.random()<0.2){
-drop.innerText="🟢"
+drop.innerText="🦠"
 drop.classList.add("drop","bad")
 }else{
 drop.innerText="💧"
@@ -285,27 +285,15 @@ let dropTop=drop.offsetTop
 let dropLeft=drop.offsetLeft
 let bucketLeft=bucket.offsetLeft
 
-/* Collision */
+/* Improved Collision */
 
-if(dropTop>390 && dropLeft>bucketLeft-10 && dropLeft<bucketLeft+70){
+if(dropTop>440 && dropLeft+20>bucketLeft && dropLeft<bucketLeft+80){
 
 clearInterval(fall)
 
-/* Sink into bucket */
-
-let sink=setInterval(()=>{
-
-drop.style.top=drop.offsetTop+4+"px"
-
-if(drop.offsetTop>470){
-
-clearInterval(sink)
-
 if(drop.classList.contains("bad")){
-
 lives--
 updateLives()
-
 }else{
 
 score+=10
@@ -320,10 +308,6 @@ createSplash(bucketLeft+30,470)
 }
 
 drop.remove()
-
-}
-
-},20)
 
 }
 
